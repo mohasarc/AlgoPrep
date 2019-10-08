@@ -32,8 +32,19 @@ int main()
 	giveSugar(ranges, students);
 	cout << askSugar(5, students) << endl;
 
+/*
+	*************
+	  SOLUTION 2
+	*************
+
+*/
+
 }// main ends
 
+// ********************** functions for SOL 1 *************************
+/*
+	it increments every student that happens to be in the range by 1
+*/
 void giveSugar(int ranges[][rangeNo], int students[]) {
 	// variables
 	int startingRange, endingRange;
@@ -52,8 +63,10 @@ void giveSugar(int ranges[][rangeNo], int students[]) {
 }
 
 /*
-ask sugar functiuon returns the number of sugar pieces does the student have
+	ask sugar functiuon returns the number of sugar pieces does the student have
 */
 int askSugar(int studentIndex, int students[]) {
 	return students[studentIndex];
 }
+
+// ********************** functions for SOL 2 ******************************
