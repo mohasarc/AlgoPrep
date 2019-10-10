@@ -2,19 +2,21 @@
 //               each time. After a few rounds, we want to know how many pieces of sugar did a particular student have.
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // Global constants
 const int rangesCount = 10, rangeNo = 2;
 
 // prototypes
-void giveSugar(int ranges[][rangeNo], int students[]);
+void giveSugar(vector<pair<int,int>> ranges, int students[]);
 int askSugar(int studentIndex, int students[]);
 
 int main()
 {
 	// Variables
 	int students[500];
+	vector<pair<int, int>> rngs = { make_pair(3,6), make_pair(2,5), make_pair(2,9), make_pair(5,9), make_pair(4,9), make_pair(1,23), make_pair(43,250), make_pair(143, 340), make_pair(0,140), make_pair(5, 150) };;
 	int ranges[rangesCount][rangeNo] = { {3,6}, {2,5}, {2,9}, {5,9}, {4,9}, {1,23}, {43,250}, {143, 340}, {0,140}, {5, 150} };
 
 	// The code
@@ -28,7 +30,7 @@ int main()
 	  SOLUTION 1
 	*************
 */
-	giveSugar(ranges, students);
+	giveSugar(rngs, students);
 	cout << askSugar(5, students) << endl;
 
 /*
@@ -44,15 +46,15 @@ int main()
 /*
 	it increments every student that happens to be in the range by 1
 */
-void giveSugar(int ranges[][rangeNo], int students[]) {
+void giveSugar(vector<pair<int,int>> ranges, int students[]) {
 	// variables
 	int startingRange, endingRange;
 
 	// The code
 	// for each range, store its starting and ending
 	for (int i = 0; i < rangesCount; i++) {
-		startingRange = ranges[i][0];
-		endingRange = ranges[i][1];
+		startingRange = ranges[i].first;
+		endingRange = ranges[i].second;
 		
 		// use the starting and ending indices to increment everything in between by 1
 		for (int i = startingRange; i <= endingRange; i++) {
