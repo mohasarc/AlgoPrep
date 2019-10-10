@@ -8,30 +8,29 @@ using namespace std;
 // Global constants
 const int rangesCount = 10, rangeNo = 2;
 
+// Global variables
+int students[500];
+
 // prototypes
 void giveSugar(vector<pair<int,int>> ranges, int students[]);
 int askSugar(int studentIndex, int students[]);
 void giveSugarUlt(vector<pair<int,int>> ranges, int students[]);
 int askSugarUlt(int studentIndex, int students[]);
+void studentsInit();
 
 int main()
 {
 	// Variables
-	int students[500];
 	vector<pair<int, int>> rngs = { make_pair(3,6), make_pair(2,5), make_pair(2,9), make_pair(5,9), make_pair(4,9), make_pair(1,23), make_pair(43,250), make_pair(143, 340), make_pair(0,140), make_pair(5, 150) };;
 	int ranges[rangesCount][rangeNo] = { {3,6}, {2,5}, {2,9}, {5,9}, {4,9}, {1,23}, {43,250}, {143, 340}, {0,140}, {5, 150} };
 
 	// The code
-	// initialize students with 0 sugar
-	for (int i = 0; i < sizeof students / sizeof students[0]; i++) {
-		students[i] = 0;
-	}
-
 /*
 	*************
 	  SOLUTION 1
 	*************
 */
+    studentsInit();
 	giveSugar(rngs, students);
 	cout << askSugar(5, students) << endl;
 
@@ -40,10 +39,18 @@ int main()
 	  SOLUTION 2
 	*************
 */
+    studentsInit();
     giveSugarUlt(rngs, students);
 	cout << askSugarUlt(5, students) << endl;
 
 }// main ends
+
+void studentsInit(){
+        // initialize students with 0 sugar
+    	for (int i = 0; i < sizeof students / sizeof students[0]; i++) {
+    		students[i] = 0;
+    	}
+    }
 
 // ********************** functions for SOL 1 *************************
 /*
