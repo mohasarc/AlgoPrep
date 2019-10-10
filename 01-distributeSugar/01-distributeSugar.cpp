@@ -11,6 +11,8 @@ const int rangesCount = 10, rangeNo = 2;
 // prototypes
 void giveSugar(vector<pair<int,int>> ranges, int students[]);
 int askSugar(int studentIndex, int students[]);
+void giveSugarUlt(vector<pair<int,int>> ranges, int students[]);
+int askSugarUlt(int studentIndex, int students[]);
 
 int main()
 {
@@ -37,8 +39,9 @@ int main()
 	*************
 	  SOLUTION 2
 	*************
-
 */
+    giveSugarUlt(rngs, students);
+	cout << askSugarUlt(5, students) << endl;
 
 }// main ends
 
@@ -71,3 +74,30 @@ int askSugar(int studentIndex, int students[]) {
 }
 
 // ********************** functions for SOL 2 ******************************
+
+void giveSugarUlt(vector<pair<int,int>> ranges, int students[]){
+        // variables
+    	int startingRange, endingRange;
+    
+    	// The code
+    	// for each range, store its starting and ending
+    	for (int i = 0; i < rangesCount; i++) {
+    		startingRange = ranges[i].first;
+    		endingRange = ranges[i].second;
+    		
+    		students[startingRange] += 1;
+    		students[endingRange] -= 1;
+    	}
+    }
+    
+/*
+	ask sugar ult functiuon returns the number of sugar pieces does the student have
+*/
+int askSugarUlt(int studentIndex, int students[]) {
+    int sugarAmount = 0;
+    
+    for (int i = 0; i <= studentIndex; i++){
+        sugarAmount += students[i];
+        }
+	return sugarAmount;
+}
