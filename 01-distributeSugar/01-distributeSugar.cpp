@@ -22,7 +22,7 @@ int main()
 {
 	// Variables
 	vector<pair<int, int>> rngs = { make_pair(3,6), make_pair(2,5), make_pair(2,9), make_pair(5,9), make_pair(4,9), make_pair(1,23), make_pair(43,250), make_pair(143, 340), make_pair(0,140), make_pair(5, 150) };;
-	int ranges[rangesCount][rangeNo] = { {3,6}, {2,5}, {2,9}, {5,9}, {4,9}, {1,23}, {43,250}, {143, 340}, {0,140}, {5, 150} };
+	//int ranges[rangesCount][rangeNo] = { {3,6}, {2,5}, {2,9}, {5,9}, {4,9}, {1,23}, {43,250}, {143, 340}, {0,140}, {5, 150} };
 
 	// The code
 /*
@@ -93,8 +93,9 @@ void giveSugarUlt(vector<pair<int,int>> ranges, int students[]){
     		endingRange = ranges[i].second;
     		
     		students[startingRange] += 1;
-    		students[endingRange] -= 1;
+    		students[endingRange + 1] -= 1;
     	}
+
     }
     
 /*
