@@ -1,6 +1,10 @@
 // The Problem : there going to be a list of students and a piece of sugar is goint to be given to a range of students
 //               each time. After a few rounds, we want to know how many pieces of sugar did a particular student have.
 
+
+// Author: Mohammed S. Yaseen
+// Date : 10/10/2019
+
 #include <iostream>
 #include <vector>
 using namespace std;
