@@ -1,5 +1,6 @@
 // Author: Mohammed S. Yaseen
 // Date : 13/10/2019
+// 
 
 #include <iostream>
 using namespace std;
@@ -17,6 +18,14 @@ void swap (int* first, int* second){
 // the one before it (to sort in increasing order)
 // - the opposit if it was asked to sort in decreasing
 // order (change s[j] < s[j-1] to s[j] > s[j-1])
+// *******************
+// Title        : insersion sort
+// Author       : Steven S. Skiena
+// Date         : 2008
+// Type         : Source code
+// Version      : unknown
+// Availability : The algorithm design manual book
+// *******************
 void insertionSort(int* s, int n){
 	int i, j;   /*the counters*/
 
@@ -51,3 +60,5 @@ int main(){
 	}
 
 }
+
+// Bibliography
