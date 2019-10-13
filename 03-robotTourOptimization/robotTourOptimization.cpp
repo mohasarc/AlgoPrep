@@ -44,10 +44,10 @@ void nearistNeighbor(){
 		currentlyOccupied ++;
 	}
 
-		cout<< path[0].first<< " , "<< path[0].second<< " ), (";
-		cout<< path[1].first<< " , "<< path[1].second<< " ), (";
-		cout<< path[2].first<< " , "<< path[2].second<< " ), (";
-		cout<< path[3].first<< " , "<< path[3].second<< " ), (";
+		cout<< "( " <<path[0].first<< " , "<< path[0].second<< " ), ( ";
+		cout<< path[1].first<< " , "<< path[1].second<< " ), ( ";
+		cout<< path[2].first<< " , "<< path[2].second<< " ), ( ";
+		cout<< path[3].first<< " , "<< path[3].second<< " )";
 }
 
 // remove the element at index j and shift the other elements
