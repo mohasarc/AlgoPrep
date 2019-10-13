@@ -37,7 +37,6 @@ void insertionSort(int* s, int n){
 			j--;
 		}
 	}
-
 }
 
 int main(){
@@ -60,5 +59,3 @@ int main(){
 	}
 
 }
-
-// Bibliography
