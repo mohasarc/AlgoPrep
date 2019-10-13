@@ -7,8 +7,19 @@ void nearistNeighbor();
 void remove(pair<int, int>* array, int j);
 double distance(pair<int, int> a, pair<int, int> b);
 
-// the code
+// this function starts from the first point looking each time for the closest
+// point and choosing it
+// downsides : 
+// *******************
+// Title        : nearistNeighbor
+// Author       : Steven S. Skiena
+// Date         : 2008
+// Type         : peudo code
+// Version      : unknown
+// Availability : The algorithm design manual book
+// *******************
 void nearistNeighbor(){
+	// variables
 	int nPoints = 4;
 	int currentlyOccupied;
 	pair<int,int> p[nPoints] = {make_pair(6,9),make_pair(5,9),make_pair(-5,-2),make_pair(0,5)};
@@ -59,6 +70,7 @@ void remove(pair<int, int>* array, int j){
 	}
 }
 
+// calculate the distance between two points in 2d
 double distance(pair<int, int> a, pair<int, int> b){
 	cout<< "the distance"<< " between ("<< a.first<< ","<< a.second<< ") and (" <<b.first<< " , "<< b.second << ") is : ";
 	cout<< sqrt(pow((a.first - b.first), 2)+pow((a.second - b.second),2))<< endl; 
