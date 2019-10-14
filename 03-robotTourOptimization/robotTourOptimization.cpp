@@ -1,3 +1,6 @@
+// author : Mohammed S. Yaseen
+// date   : 13/10/2019
+
 #include <iostream>
 #include "math.h"
 using namespace std;
