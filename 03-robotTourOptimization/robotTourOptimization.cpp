@@ -33,7 +33,7 @@ void nearistNeighbor(){
 	remove(p, 0);
 	nPoints --;
 
-	cout<< p[0].first<< " , "<< p[0].second<<endl;
+	//cout<< p[0].first<< " , "<< p[0].second<<endl;
 
 	while (nPoints > 0){
 		path[currentlyOccupied] = p[0];
@@ -50,7 +50,7 @@ void nearistNeighbor(){
 			}
 			
 			//cout<< p[0].first<< " , "<< p[0].second<<endl;
-			cout<< path[currentlyOccupied].first<< " , "<< path[currentlyOccupied].second<<endl;
+			//cout<< path[currentlyOccupied].first<< " , "<< path[currentlyOccupied].second<<endl;
 			
 		}
 		remove(p, 0);
@@ -75,8 +75,8 @@ void remove(pair<int, int>* array, int j){
 
 // calculate the distance between two points in 2d
 double distance(pair<int, int> a, pair<int, int> b){
-	cout<< "the distance"<< " between ("<< a.first<< ","<< a.second<< ") and (" <<b.first<< " , "<< b.second << ") is : ";
-	cout<< sqrt(pow((a.first - b.first), 2)+pow((a.second - b.second),2))<< endl; 
+	//cout<< "the distance"<< " between ("<< a.first<< ","<< a.second<< ") and (" <<b.first<< " , "<< b.second << ") is : ";
+	//out<< sqrt(pow((a.first - b.first), 2)+pow((a.second - b.second),2))<< endl; 
 	return sqrt(pow((a.first - b.first), 2)+pow((a.second - b.second),2));
 }
 
