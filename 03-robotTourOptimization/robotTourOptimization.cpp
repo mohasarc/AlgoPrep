@@ -64,6 +64,16 @@ void nearistNeighbor(){
 		cout<< path[3].first<< " , "<< path[3].second<< " )";
 }
 
+// closest pair 
+//void closestPair(){
+//        
+//}
+
+// optimal
+// optimalTSP(){
+//
+//}
+
 // remove the element at index j and shift the other elements
 // up the array
 void remove(pair<int, int>* array, int j){
