@@ -30,24 +30,33 @@ void earliestJobFirst(){
 	int n = sizeof a/ sizeof a[0];
 
   vector<pair<int,int>> intervals;
-  
+  vector<int> myVec(a, a+6);
+
   for (int i = 0; i < n; i++){
   	intervals.push_back(make_pair(a[i], b[i]));
   }
 
+// print before sorting
   for (int i = 0; i < intervals.size(); i++){
   	cout<< "("<< intervals[i].first<<" , "<<
   	intervals[i].second<< ")";
   }
 
-  sort(intervals.begin, intervals.end, compareThem);
+  sort(intervals.begin(), intervals.end());
+
+// print after sorting
+  cout<<endl;
+  for (int i = 0; i < intervals.size(); i++){
+  	cout<< "("<< intervals[i].first<<" , "<<
+  	intervals[i].second<< ")";
+  }
 
 }
-
+/*
   bool compareThem(const pair<int,int> &a, const pair<int,int> &b){
   	return (a.first<b.first);
   }
-
+*/
 /*
 void moveToFront(vector<pair<int,int>> v, int index){
 	pair<int,int> tmp = v.front;
