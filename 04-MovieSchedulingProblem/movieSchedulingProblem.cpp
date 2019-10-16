@@ -28,28 +28,49 @@ void earliestJobFirst(){
 	int a[] = {5, 3, 6, 13, 15, 22 };
 	int b[] = {8, 8, 12, 25, 34, 38 };
 	int n = sizeof a/ sizeof a[0];
+  	vector<pair<int,int>> intervals;
 
-  vector<pair<int,int>> intervals;
-  vector<int> myVec(a, a+6);
+  // populating the vector with pairs from a and b arrays
+ 	for (int i = 0; i < n; i++){
+  		intervals.push_back(make_pair(a[i], b[i]));
+  	}
 
-  for (int i = 0; i < n; i++){
-  	intervals.push_back(make_pair(a[i], b[i]));
-  }
+	// print before sorting
+ 	for (int i = 0; i < intervals.size(); i++){
+  		cout<< "("<< intervals[i].first<<" , "<<
+  		intervals[i].second<< ")";
+  	}
 
-// print before sorting
-  for (int i = 0; i < intervals.size(); i++){
-  	cout<< "("<< intervals[i].first<<" , "<<
-  	intervals[i].second<< ")";
-  }
-
-  sort(intervals.begin(), intervals.end());
+  	sort(intervals.begin(), intervals.end());
 
 // print after sorting
-  cout<<endl;
-  for (int i = 0; i < intervals.size(); i++){
-  	cout<< "("<< intervals[i].first<<" , "<<
-  	intervals[i].second<< ")";
-  }
+ 	cout<<endl;
+ 	for (int i = 0; i < intervals.size(); i++){
+ 		cout<< "("<< intervals[i].first<<" , "<<
+ 		intervals[i].second<< ")";
+ 	}
+
+ 	int count = 0;
+
+ 	while (count < intervals.size() ){
+ 		// remove all following intervals that has 0 between a and b of
+ 		// interval at count
+ 		if (intervals[count + 1].first <= intervals[count].second){
+ 			cout<<"will erase "<< intervals[count + 1].first;
+ 			intervals.erase(intervals.begin() + (count + 1));
+ 		} else {
+ 			count ++;
+ 		}
+ 	}
+
+ 	// print after removing unwanted intervals
+ 	cout<<endl;
+ 	for (int i = 0; i < intervals.size(); i++){
+ 		cout<< "("<< intervals[i].first<<" , "<<
+ 		intervals[i].second<< ")";
+ 	}
+
+ 	cout<<intervals[2].first;
 
 }
 /*
