@@ -17,14 +17,43 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
+// prototypes
+void earliestJobFirst();
+bool compareThem(const pair<int,int> &a, const pair<int,int> &b);
+
 void earliestJobFirst(){
-  vector<pair<int,int>> intervals{make_pair(5,8), make_pair(3,8), make_pair(6,12), make_pair(13,25), make_pair(15,34), make_pair(22,38) };
+	int a[] = {5, 3, 6, 13, 15, 22 };
+	int b[] = {8, 8, 12, 25, 34, 38 };
+	int n = sizeof a/ sizeof a[0];
+
+  vector<pair<int,int>> intervals;
   
-  cout<< intervals.front().first<<" , ";
-  cout<< intervals.front().second;
+  for (int i = 0; i < n; i++){
+  	intervals.push_back(make_pair(a[i], b[i]));
+  }
+
+  for (int i = 0; i < intervals.size(); i++){
+  	cout<< "("<< intervals[i].first<<" , "<<
+  	intervals[i].second<< ")";
+  }
+
+  sort(intervals.begin, intervals.end, compareThem);
+
 }
+
+  bool compareThem(const pair<int,int> &a, const pair<int,int> &b){
+  	return (a.first<b.first);
+  }
+
+/*
+void moveToFront(vector<pair<int,int>> v, int index){
+	pair<int,int> tmp = v.front;
+	v.front = 
+}
+*/
 
 int main(){
 
