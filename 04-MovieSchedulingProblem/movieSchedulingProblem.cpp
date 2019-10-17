@@ -24,6 +24,19 @@ using namespace std;
 void earliestJobFirst();
 bool compareThem(const pair<int,int> &a, const pair<int,int> &b);
 
+// earliest job first starts from the nearist interval then add all other
+// non intersecting intervals
+//
+// EX: INPUT:
+//
+// **** A ****                 **************** E ***************
+//   *** B ***               ************ D ***********
+//         ******* C *******                       *********** F ***********
+// 
+// OUTPUT :
+//
+// **** A ****
+//                           ************ D ***********
 void earliestJobFirst(){
 	int a[] = {5, 3, 6, 13, 15, 22 };
 	int b[] = {8, 8, 12, 25, 34, 38 };
@@ -36,24 +49,31 @@ void earliestJobFirst(){
   	}
 
 	// print before sorting
+	/*
  	for (int i = 0; i < intervals.size(); i++){
   		cout<< "("<< intervals[i].first<<" , "<<
   		intervals[i].second<< ")";
   	}
+	*/
 
   	// sort the intervals increasingly according to the 
   	// starting of each of them
   	sort(intervals.begin(), intervals.end());
 
 // print after sorting
+  	/*
  	cout<<endl;
  	for (int i = 0; i < intervals.size(); i++){
  		cout<< "("<< intervals[i].first<<" , "<<
  		intervals[i].second<< ")";
  	}
+ 	*/
 
- 	int count = 1;
+ 	int count = 1;  // The index we'll start checking from
 
+ 	// go through all intervals and remove any interval that has its
+ 	// starting value between the starting and ending of the first interval
+ 	// that doesn't intersact with any interval before
  	while (count < intervals.size() ){
  		// remove all following intervals that has 0 between a and b of
  		// interval at count
@@ -71,17 +91,6 @@ void earliestJobFirst(){
  		intervals[i].second<< ")";
  	}
 }
-/*
-  bool compareThem(const pair<int,int> &a, const pair<int,int> &b){
-  	return (a.first<b.first);
-  }
-*/
-/*
-void moveToFront(vector<pair<int,int>> v, int index){
-	pair<int,int> tmp = v.front;
-	v.front = 
-}
-*/
 
 int main(){
 
