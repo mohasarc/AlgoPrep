@@ -41,6 +41,8 @@ void earliestJobFirst(){
   		intervals[i].second<< ")";
   	}
 
+  	// sort the intervals increasingly according to the 
+  	// starting of each of them
   	sort(intervals.begin(), intervals.end());
 
 // print after sorting
@@ -50,28 +52,24 @@ void earliestJobFirst(){
  		intervals[i].second<< ")";
  	}
 
- 	int count = 0;
+ 	int count = 1;
 
  	while (count < intervals.size() ){
  		// remove all following intervals that has 0 between a and b of
  		// interval at count
- 		if (intervals[count + 1].first <= intervals[count].second){
- 			cout<<"will erase "<< intervals[count + 1].first;
- 			intervals.erase(intervals.begin() + (count + 1));
+ 		if (intervals[count].first <= intervals[count - 1].second){
+ 			intervals.erase(intervals.begin() + (count));
  		} else {
  			count ++;
  		}
  	}
 
  	// print after removing unwanted intervals
- 	cout<<endl;
+ 	cout << endl;
  	for (int i = 0; i < intervals.size(); i++){
  		cout<< "("<< intervals[i].first<<" , "<<
  		intervals[i].second<< ")";
  	}
-
- 	cout<<intervals[2].first;
-
 }
 /*
   bool compareThem(const pair<int,int> &a, const pair<int,int> &b){
