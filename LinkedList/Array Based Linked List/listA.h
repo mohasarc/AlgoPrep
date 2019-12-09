@@ -4,10 +4,10 @@
 const int max = 500;
 typedef int ListItemType;
 
-class listA
+class list
 {
 public:
-	listA();
+	list();
 	bool isEmpty() const;
 	int getLength() const;
 	bool retrieve(int index, ListItemType& dataItem ) const;
@@ -17,7 +17,9 @@ private:
 	ListItemType items[max];
 	int size;
 	int translate(int index) const;
-
+	// item at from would become empty and item at
+	// to would be populated with the (to - 1) item
+ 	bool shiftItems(int from, int to);
 };
 
 
