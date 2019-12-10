@@ -1,23 +1,20 @@
 #include "listP.h"
+#include <cstddef>
 
 List::List(): size(0), head(NULL) {};
 List::~List(){
-	// if(head)
-	// 	remove(1); idea -- make it recursive
-
 	while(!isEmpty())
 		remove(1);
 } // end destructor
 
 List::List(const List& alist):size(alist.size){
-	if(! alist->head)
+	if(alist.head){
 		// do nothing (the original list is empty)
-	else{
 		head = new Node;
-		head->data = alist->head->data;
+		head->data = alist.head->data;
 		Node* iter = head;
-		for(Node* cur = alist->head->next; cur != NULL; cur = cur->next){
-			Node tmp = new Node;
+		for(Node* cur = alist.head->next; cur != NULL; cur = cur->next){
+			Node* tmp = new Node;
 			tmp->data = cur->data;
 			iter->next = tmp;
 			iter = iter->next;
@@ -26,15 +23,15 @@ List::List(const List& alist):size(alist.size){
 	}
 }
 
-bool List::isEmpty(){
+bool List::isEmpty() const{
 	return !size; // may be problem
 } // end isEmpty
 
-int List::getLength(){
+int List::getLength() const{
 	return size;
 } // end getLength
 
-Node* List::find(int index) const{
+List::Node* List::find(int index) const{
 	if (index < 1 || index > size)
 		return NULL;
 
@@ -47,7 +44,7 @@ Node* List::find(int index) const{
 }
 
 bool List::retrieve(int index, ListItemType& dataItem) const{
-	if(index >= 1; index <= size){
+	if(index >= 1 && index <= size){
 		dataItem = find(index)->data;
 		return true;
 	}
@@ -55,13 +52,13 @@ bool List::retrieve(int index, ListItemType& dataItem) const{
 	return false;
 } // end retrieve
 
-bool List::insert(int index; ListItemType dataItem){
+bool List::insert(int index, ListItemType newItem){
 	int newlength = size + 1;
 	if(index < 1 || index > newlength)
 		return false;
 
 	Node* tmp;
-	tmp->data = dataItem;
+	tmp->data = newItem;
 	size = newlength;
 
 	if(index == 1){
