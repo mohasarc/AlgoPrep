@@ -34,6 +34,26 @@ int List::getLength(){
 	return size;
 } // end getLength
 
+Node* List::find(int index) const{
+	if (index < 1 || index > size)
+		return NULL;
+
+		else {
+		Node* cur = head;
+		for (int pos = 1; pos < index; pos++)
+			cur = cur->next;
+		return cur;
+	}
+}
+
+bool List::retrieve(int index, ListItemType& dataItem) const{
+	if(index >= 1; index <= size){
+		dataItem = find(index)->data;
+		return true;
+	}
+
+	return false;
+} // end retrieve
 
 
 
