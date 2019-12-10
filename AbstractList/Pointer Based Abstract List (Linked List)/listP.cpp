@@ -24,8 +24,17 @@ List::List(const List& alist):size(alist.size){
 		}
 		iter->next = NULL;
 	}
-
 }
+
+bool List::isEmpty(){
+	return !size; // may be problem
+} // end isEmpty
+
+int List::getLength(){
+	return size;
+} // end getLength
+
+
 
 
 int main(){
