@@ -77,6 +77,25 @@ bool List::insert(int index; ListItemType dataItem){
 	return true;
 } //end insert
 
+bool List::remove(int index){
+	if(index < 1 || index > size)
+		return false;
+
+	Node* cur = find(index);
+	size--;
+	if(index == 1){
+		head = cur->next;
+	} else {
+		Node* prev = find(index-1);
+		prev->next = cur->next;
+	}
+
+	cur->next = NULL;
+	delete cur;
+	cur = NULL;
+
+	return true;
+}// end remove
 
 int main(){
 
