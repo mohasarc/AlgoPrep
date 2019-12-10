@@ -56,24 +56,26 @@ bool List::retrieve(int index, ListItemType& dataItem) const{
 } // end retrieve
 
 bool List::insert(int index; ListItemType dataItem){
-	if(index > 1 && index <= size+1){
-		Node* cur = find(index);
+	int newlength = size + 1;
+	if(index < 1 || index > newlength)
+		return false;
+
+	Node* tmp;
+	tmp->data = dataItem;
+	size = newlength;
+
+	if(index == 1){
+		tmp->next = head;
+		head = tmp;
+	}
+	else {
 		Node* prev = find(index - 1);
-		Node* tmp;
-		tmp->data = dataItem;
-		tmp->next = cur;
+		tmp->next = prev->next;
 		prev->next = tmp;
 	}
 
-	if(index == 1){
-		Node* newNode;
-		newNode->data = dataItem;
-		newNode->next = head;
-		head = newNode;
-	}
-
-	return false;
-}
+	return true;
+} //end insert
 
 
 int main(){
