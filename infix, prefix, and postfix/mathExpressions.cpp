@@ -1,3 +1,6 @@
+// author : Mohammed S. Yaseen
+// date   : 6/1/2020
+
 #include <string>
 #include <iostream>
 #include "..\ADTStack\stack.h"
@@ -5,15 +8,44 @@ using namespace std;
 
 bool isIdentifier(char a);
 bool isOperator(char b);
-int solveSimpleArith(int operand1, char operat, int operand2);
+int doArithmatic(int operand1, char operat, int operand2);
 
 // evaluateInfix(){
 
 // }
 
-// evaluatePostfix(){
+int evaluatePostfix(string &exp){
+	Stack container;
 
-// }
+	while(exp != ""){
+		char firstChar = exp.at(0);
+		if (isIdentifier(firstChar)){
+			container.push((firstChar - 48));
+			exp.erase(exp.begin());
+		} else if (isOperator(firstChar)){
+			int operand1 = 0;
+			int operand2 = 0;
+			int result = 0;
+
+			container.pop(operand2);
+			container.pop(operand1);
+			result = doArithmatic(operand1, firstChar, operand2);
+
+			cout<<"result "<<result<<endl;
+
+			container.push(result);
+
+			int top;
+			container.getTop(top);
+			cout<<"top "<<top<<endl;
+			exp.erase(exp.begin());
+		}
+	}
+
+	int finalResult;
+	container.pop(finalResult);
+	return finalResult;
+}
 
 int evaluatePrefix_rec(string &exp){
 	char firstChar;
@@ -35,7 +67,7 @@ int evaluatePrefix_rec(string &exp){
 		// cout<<"reached exp "<<exp<<endl;
 		int operand1 = evaluatePrefix_rec(exp);
 		int operand2 = evaluatePrefix_rec(exp);
-		return solveSimpleArith(operand1, firstChar, operand2);
+		return doArithmatic(operand1, firstChar, operand2);
 	}
 	return 0;
 }
@@ -127,9 +159,9 @@ bool isOperator(char b){
 	return false;
 }
 
-int solveSimpleArith(int operand1, char operat, int operand2){
+int doArithmatic(int operand1, char operat, int operand2){
 	
-	// cout<<"to solve : "<<operand1<<" "<< operat<< " "<< operand2<<endl;
+	cout<<"to solve : "<<operand1<<" "<< operat<< " "<< operand2<<endl;
 	if (operat == '+')
 		return operand1 + operand2;
 	else if (operat == '-')
@@ -137,7 +169,7 @@ int solveSimpleArith(int operand1, char operat, int operand2){
 	else if (operat == '*')
 		return operand1 * operand2;
 	else if (operat == '/')
-		return operand1 + operand2;
+		return operand1 / operand2;
 
 	return 0;
 }
@@ -145,11 +177,13 @@ int solveSimpleArith(int operand1, char operat, int operand2){
 int main()
 {
 	string myPre = "++2*35*+*6426";
-	string myInfix = "1-(2+3*4)/5";
+	string myInfix = "1-(3+3*4)/5";
 	string myPost;
-	cout<<evaluatePrefix_rec(myPre);
+	// cout<<evaluatePrefix_rec(myPre);
 	// prefixToPostfix_rec(myPre, myPost);
-	// infixToPostfix_stk(myInfix, myPost);
-	cout<<"\n"<<myPost;
+	infixToPostfix_stk(myInfix, myPost);
+
+	cout<<"\n"<<myPost<<endl;
+	cout<<evaluatePostfix(myPost);
 	return 0;
 }
