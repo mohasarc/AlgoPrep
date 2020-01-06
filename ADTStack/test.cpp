@@ -13,12 +13,12 @@ int main()
 
 	int a, b;
 
-	myStack.getTop(a);
+	// myStack.getTop(a);
+	myStack.pop(a);
+	myStack.pop(b);
 	myStack.pop();
 	myStack.pop();
-	myStack.pop();
-	myStack.pop();
-	myStack.getTop(b);
+	// myStack.getTop(b);
 
 	cout<<a<<"\t"<<b;
 	
