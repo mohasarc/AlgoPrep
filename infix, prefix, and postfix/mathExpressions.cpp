@@ -59,9 +59,21 @@ int evaluatePrefix_rec(string &exp){
 
 // }
 
-// prefixToPostfix(){
+void prefixToPostfix_rec(string &pre, string &post){
+	char firstChar;
+	if(pre != ""){
+		firstChar = pre.at(0);
+		pre.erase(pre.begin());
+	}
 
-// }
+	if(isIdentifier(firstChar))
+		post = post + firstChar;
+	else {
+		prefixToPostfix_rec(pre, post);
+		prefixToPostfix_rec(pre, post);
+		post = post + firstChar;
+	}
+}
 
 bool isIdentifier(char a){
 	char identifiers[10] = {'0','1','2','3','4','5','6','7','8','9'};
@@ -103,7 +115,10 @@ int solveSimpleArith(int operand1, char operat, int operand2){
 
 int main()
 {
-	string myExp = "++2*35*+*6426";
-	cout<<evaluatePrefix_rec(myExp);
+	string myPre = "++2*35*+*6426";
+	string myPost;
+	// cout<<evaluatePrefix_rec(myPre);
+	prefixToPostfix_rec(myPre, myPost);
+	cout<<"\n"<<myPost;
 	return 0;
 }
