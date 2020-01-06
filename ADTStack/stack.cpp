@@ -1,10 +1,11 @@
 #include "stack.h"
+#include <bits/stdc++.h>
 
 Stack::Stack(): topPtr(NULL){}
 
-Stack::Stack(const Stack& aStack);{
+Stack::Stack(const Stack& aStack){
 	// if the same item return and nothing else
-	if (aStack == *this)
+	if (&aStack == this)
 		return;
 
 	// check if topPtr is not null
@@ -59,6 +60,7 @@ bool Stack::pop(){
 	else{
 		StackNode* tmp = topPtr;
 		topPtr = topPtr->next;
+		tmp->next = NULL;
 		delete tmp;
 		return true;
 	}
@@ -68,10 +70,11 @@ bool Stack::pop(StackItemType& stackTop){
 	if(topPtr == NULL)
 		return false;
 	else{
+		stackTop = topPtr->item;
 		StackNode* tmp = topPtr;
 		topPtr = topPtr->next;
 		tmp->next = NULL;
-		stackTop = tmp;
+		delete tmp;
 		return true;
 	}
 }
@@ -80,10 +83,7 @@ bool Stack::getTop(StackItemType& stackTop) const{
 	if(topPtr == NULL)
 		return false;
 	else{
-		StackNode* tmp = new StackNode;
-		tmp->item = topPtr->item;
-		tmp->next = NULL;
-		stackTop = tmp;
+		stackTop = topPtr->item;
 		return true;
 	}
 }
