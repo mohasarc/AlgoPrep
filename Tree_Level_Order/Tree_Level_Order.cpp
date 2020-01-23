@@ -1,6 +1,8 @@
+// problem source : https://youtu.be/eltLoCIDIes
+// solution by : Moahmmed S. Yaseen
+
 // Given a tree, write a function that prints out
 // the nodes of the tree in level order.
-// problem source : https://youtu.be/eltLoCIDIes
 // eg.
 /*
     tree: 
@@ -21,21 +23,21 @@ struct TreeNode{
     TreeNode* right;
 };
 
-void traverseTree(TreeNode* root){
+void traverseTreeRec(TreeNode* root){
     // stopping case: if NULL
     if (root == NULL)
         return;
 
     // print its left
     if (root->left != NULL)
-        traverseTree(root->left);
+        traverseTreeRec(root->left);
     
     // print itselt
     cout<<root->data<<"\t";
 
     // print right
     if (root->right != NULL)
-        traverseTree(root->right);
+        traverseTreeRec(root->right);
 }
 
 
@@ -98,9 +100,9 @@ int main(){
     root->right->right->left = NULL;
     root->right->right->right = NULL;
 
-    traverseTree(root);
+    traverseTreeRec(root);
     cout<<endl;
-    traverseTree(root2);
+    traverseTreeRec(root2);
 
     return 0;
 }
