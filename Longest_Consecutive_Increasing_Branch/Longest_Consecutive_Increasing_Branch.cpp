@@ -57,12 +57,14 @@ void longestPath(TreeNode* root, int prevVal, int curLength, int &thePath){
 
 int longestPath(TreeNode* root){
     int thePath = 0;
+    if(!root)
+        return thePath;
     longestPath(root, root->data, 0, thePath);
     return thePath;
 }
 
 int main(){
-    
+
 /*              5
               /   \
              2     7
