@@ -29,11 +29,11 @@ struct TreeNode{
 
 void toLinkedList(TreeNode* root, TreeNode* latestL, TreeNode* latestR, TreeNode* &head, TreeNode* &tail){
     if(root->left == NULL){
-        cout<<"a null was hit root: "<<root->data;
+        // cout<<"a null was hit root: "<<root->data;
         root->left = latestR;
         if (latestR){
             latestR->right = root;
-            cout<<" R : "<< latestR->data;
+            // cout<<" R : "<< latestR->data;
         } else {
             head = root; // will reach here only once at the deepest left of tree
                          // (having both next left and the latest right = NULL)
@@ -42,7 +42,7 @@ void toLinkedList(TreeNode* root, TreeNode* latestL, TreeNode* latestR, TreeNode
         root->right = latestL;
         if (latestL){
             latestL->left = root;
-            cout<<" L : "<<latestL->data<<endl;
+            // cout<<" L : "<<latestL->data<<endl;
         } else {
             tail = root; // will reach here only once at deepest right of tree
                          // (having both next left and the latest left = NULL)
@@ -52,8 +52,6 @@ void toLinkedList(TreeNode* root, TreeNode* latestL, TreeNode* latestR, TreeNode
             toLinkedList(root->left, root, latestR, head, tail);
             toLinkedList(root->right, latestL, root, head, tail);
     }
-
-
 }
 
 void toLinkedList(TreeNode* root, TreeNode* &head, TreeNode* &tail){
