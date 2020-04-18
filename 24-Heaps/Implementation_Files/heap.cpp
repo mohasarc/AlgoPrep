@@ -25,6 +25,12 @@ ArrayMaxHeap::ArrayMaxHeap(int *inItems, int size) {
     createHeap();
 }
 
+ArrayMaxHeap::~ArrayMaxHeap(){
+    delete [] items;
+    itemCount = 0;
+}
+
+
 /**
  * @return boolean whether the heap is empty
  * */
@@ -51,7 +57,7 @@ int ArrayMaxHeap::getHeight(){
  * */
 int ArrayMaxHeap::peekTop(){
     // retrieving the root item
-    return items[0];
+    return items[rootIndex];
 }
 
 /**
@@ -64,9 +70,9 @@ bool ArrayMaxHeap::add(int newData){
         return false;
 
     // Add the item to the bottom of the heap tree
-    items[itemCount++];
+    items[rootIndex + itemCount++];
     // Fit the newly added item in its position
-    fitNewItem(itemCount - 1);
+    fitNewItem(rootIndex + itemCount - 1);
 
     return true;
 }
@@ -79,9 +85,9 @@ bool ArrayMaxHeap::remove(){
         return false;
 
     // Replacing the root with the last item
-    items[0] = items[itemCount - 1];
+    items[rootIndex] = items[rootIndex + itemCount - 1];
     itemCount--;
-    heapRebuild(0);
+    heapRebuild(rootIndex);
     return true;
 }
 
@@ -102,18 +108,23 @@ void ArrayMaxHeap::heapRebuild(int root){
     // Local variables
     int leftChild = getLeftChileIndex(root);
     int rightChild = getRightChildIndex(root);
+    bool greaterThanL = false;
+    bool greaterThanR = false;
+
+    leftChild < rootIndex + itemCount && items[root] >= items[leftChild] ? greaterThanL = true: greaterThanL = false;
+    rightChild < rootIndex + itemCount && items[root] >= items[rightChild] ? greaterThanR = true: greaterThanR = false;
 
     // Base Case
-    if (items[root] >= items[leftChild] && items[root] >= items[rightChild])
+    if (greaterThanL && greaterThanR)
         return;
 
     // Recursive step
-    if (leftChild < itemCount && items[leftChild] >= items[rightChild]){
+    if (leftChild < rootIndex + itemCount && items[leftChild] >= items[rightChild]){
         // Swap parent value with left child
         swap(items[leftChild], items[root]);
         heapRebuild(leftChild);
     }
-    else if (rightChild < itemCount){
+    else if (rightChild < rootIndex + itemCount){
         // Swap parent value with right child
         swap(items[rightChild], items[root]);
         heapRebuild(rightChild);
@@ -160,7 +171,7 @@ int ArrayMaxHeap::getParentIndex(int childI){
  * Creates the heap
  * */
 void ArrayMaxHeap::createHeap(){
-    for (int i = itemCount/2; i >= 0; i--)
+    for (int i = (rootIndex + itemCount)/2; i >= 0; i--)
         heapRebuild(i);
 }
 
@@ -173,7 +184,7 @@ void ArrayMaxHeap::fitNewItem(int itemIndex){
     // Base case
     // - On root already, or
     // - Less or equal to parent
-    if (itemIndex <= ROOT_INDEX || items[itemIndex] <= items[parentIndex])
+    if (itemIndex <= rootIndex || items[itemIndex] <= items[parentIndex])
         return;
     else {
         // Swap child with parent
@@ -187,10 +198,10 @@ void ArrayMaxHeap::fitNewItem(int itemIndex){
  * 
  * */
 bool ArrayMaxHeap::isLeaf(int index){
-    int lastParent = getParentIndex(itemCount - 1);
+    int lastParent = getParentIndex(rootIndex + itemCount - 1);
     bool leaf;
 
-    index > lastParent && index < itemCount ? leaf = 1 : leaf = 0;
+    index > lastParent && index < (rootIndex + itemCount) ? leaf = 1 : leaf = 0;
 
     return leaf;
 }
@@ -207,7 +218,7 @@ void ArrayMaxHeap::print(){
  * */
 void ArrayMaxHeap::print(int root, int level){
     // if doesn't exist stop
-    if (root >= itemCount)
+    if (root >= rootIndex + itemCount)
         return;
 
     // print self
@@ -219,4 +230,33 @@ void ArrayMaxHeap::print(int root, int level){
     print(getLeftChileIndex(root), level + 1);
     // print right
     print(getRightChildIndex(root), level + 1);
+}
+
+void ArrayMaxHeap::sortAsc(int *arr, int size){
+    ArrayMaxHeap heap;
+    heap.items = arr;
+    heap.itemCount = size;
+    heap.createHeap();
+
+    while( heap.itemCount > 0){
+        heap.heapRebuild(heap.rootIndex);
+        // swapping the max with the last leaf
+        heap.swap(heap.items[heap.rootIndex], heap.items[heap.itemCount - 1]);
+        heap.itemCount--;
+    }
+
+    // Not to be destrcuted
+    heap.items = NULL;
+}
+
+void ArrayMaxHeap::sortDesc(int *arr, int size){
+    // to be implemented with minHeap
+}
+
+void ArrayMaxHeap::sortAsc(ArrayMaxHeap &heap){
+
+}
+
+void ArrayMaxHeap::sortDesc(ArrayMaxHeap &heap){
+
 }

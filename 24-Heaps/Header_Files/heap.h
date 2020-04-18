@@ -11,6 +11,7 @@ public:
     // the constructor
     ArrayMaxHeap();
     ArrayMaxHeap(int *inItems, int size);
+    ~ArrayMaxHeap();
     bool isEmpty();
     int getNumberOfNodes();
     int getHeight();
@@ -20,14 +21,16 @@ public:
     void clear();
     void print();
     void print(int root, int level);
-
+    void static sortAsc(int *arr, int size);
+    void static sortDesc(int *arr, int size);
+    void static sortAsc(ArrayMaxHeap &heap);
+    void static sortDesc(ArrayMaxHeap &heap);
 private:
     // Properties
     int *items;
     int itemCount;
-
+    int rootIndex = 0;
     // Constants
-    const int ROOT_INDEX = 0;
     int MAX_ITEMS = 50000;  // the maximum capacity of the heap
 
     // Functions

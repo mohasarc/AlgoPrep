@@ -10,13 +10,21 @@ int main(){
     for (int i = 0; i < 10; i++)
         arr[i] = arry[i];
 
-    ArrayMaxHeap fHeap(arr, 10);
+    // ArrayMaxHeap fHeap(arr, 10);
 
-    fHeap.print();
+    // fHeap.print();
+
+    // for (int i = 0; i < 10; i++){
+    //     cout << fHeap.peekTop() << "\t";
+    //     fHeap.remove();
+    // }
+
+    ArrayMaxHeap::sortAsc(arr, 10);
+    // ArrayMaxHeap::sortDesc(arr, 10);
 
     for (int i = 0; i < 10; i++){
-        cout << fHeap.peekTop() << "\t";
-        fHeap.remove();
+        cout << arr[i] << "\t";
     }
+
     return 0;
 }
