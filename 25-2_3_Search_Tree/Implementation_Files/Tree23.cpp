@@ -17,7 +17,7 @@ void Tree23<T>::traverse(TriNode<T>* root){
     if (root->isLeaf()){
         // cout << "it is leaf" << endl;
         // Print its contents
-        cout << "\t" << root->getSmallItem() << "\t";
+        cout << root->getSmallItem() << "\t";
         if (root->isThreeNode())
             cout << root->getLargeItem() << "\t";
         return;
@@ -28,13 +28,14 @@ void Tree23<T>::traverse(TriNode<T>* root){
     traverse(root->getLeftChildPtr());
 
     // Print Smaller Item
-    cout << "\t" <<root->getSmallItem();
+    cout <<root->getSmallItem() << "\t";
 
     // Print Middle
     traverse(root->getMidChildPtr());
+
     if (root->isThreeNode()) {
         // Print Larger Item
-        cout << "\t" <<root->getLargeItem();
+        cout << root->getLargeItem() << "\t";
 
         // Print Right
         traverse(root->getRightChildPtr());
@@ -249,11 +250,11 @@ bool Tree23<T>::remove(T anItem){
 
 int main (){
     Tree23<int>* node = new Tree23<int>();
+    node->insert(10);
     node->insert(5);
     node->insert(2);
     node->insert(3);
     node->insert(7);
-    node->insert(10);
     node->insert(1);
     node->traverse();
     return 0;
