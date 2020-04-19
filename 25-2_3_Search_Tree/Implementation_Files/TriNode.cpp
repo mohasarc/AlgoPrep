@@ -2,16 +2,19 @@
 
 template < class ItemType>
 TriNode<ItemType>::TriNode(){
-    smallItem = NULL;
-    largeItem = NULL;
     leftChildPtr = NULL;
     midChildPtr = NULL;
     rightChildPtr = NULL;
+    twoNode = true;
 }
 
 template < class ItemType>
 TriNode<ItemType>::TriNode( const ItemType& anItem){
     smallItem = anItem;
+    leftChildPtr = NULL;
+    midChildPtr = NULL;
+    rightChildPtr = NULL;
+    twoNode = true;
 }
 
 template < class ItemType>
@@ -21,6 +24,8 @@ TriNode<ItemType>::TriNode( const ItemType& anItem, TriNode<ItemType>* leftPtr,
     leftChildPtr = leftPtr;
     midChildPtr = midPtr;
     rightChildPtr = rightPtr;
+    if (rightPtr == NULL)
+        twoNode = true;
 }
 
 template < class ItemType>
@@ -31,14 +36,14 @@ bool TriNode<ItemType>::isLeaf() const {
 
 template < class ItemType>
 bool TriNode<ItemType>::isTwoNode() const {
-    // two node if larger is not occupied
-    return !largeItem;
+    // two node if right ptr is not occupied
+    return twoNode;
 }
 
 template < class ItemType>
 bool TriNode<ItemType>::isThreeNode() const {
-    // three node if larger is occupied
-    return largeItem;
+    // three node if right ptr is occupied
+    return !twoNode;
 }
 
 template < class ItemType>
@@ -58,6 +63,7 @@ void TriNode<ItemType>::setSmallItem( const ItemType& anItem){
 
 template < class ItemType>
 void TriNode<ItemType>::setLargeItem( const ItemType& anItem){
+    twoNode = false;
     largeItem = anItem;
 }
 
@@ -88,6 +94,11 @@ void TriNode<ItemType>::setMidChildPtr(TriNode<ItemType>* midPtr){
 
 template < class ItemType>
 void TriNode<ItemType>::setRightChildPtr(TriNode<ItemType>* rightPtr){
+    if (rightPtr == NULL)
+        twoNode = true;
+    else
+        twoNode = false;
+        
     rightChildPtr = rightPtr;
 }
 

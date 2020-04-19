@@ -16,6 +16,7 @@ ItemType smallItem, largeItem; // Data portion
 TriNode<ItemType>* leftChildPtr; // Left-child pointer
 TriNode<ItemType>* midChildPtr; // Middle-child pointer
 TriNode<ItemType>* rightChildPtr; // Right-child pointer
+bool twoNode;
 
 public :
 TriNode();

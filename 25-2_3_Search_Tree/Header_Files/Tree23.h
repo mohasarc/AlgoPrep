@@ -13,7 +13,7 @@ TriNode<T>* root;
 // Functions
 void traverse(TriNode<T>* root);
 bool search(TriNode<T>* root, T anItem, TriNode<T>* foundLocation);
-void insert(TriNode<T>* root, T anItem, TriNode<T>* newPtr);
+void insert(TriNode<T>* root, T &anItem, TriNode<T>* &newPtr);
 bool remove(TriNode<T>* root, T anItem);
 void swapWithChild(TriNode<T>* root, T &anItem, char which);
 void splitNode(TriNode<T>* origNode, TriNode<T>* &separatedNode, TriNode<T>* newNode);
