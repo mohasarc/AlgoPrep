@@ -90,3 +90,8 @@ template < class ItemType>
 void TriNode<ItemType>::setRightChildPtr(TriNode<ItemType>* rightPtr){
     rightChildPtr = rightPtr;
 }
+
+// int main (){
+//     TriNode<int>* newnd = new TriNode<int>(4);
+//     std::cout << newnd->getSmallItem();
+// }
