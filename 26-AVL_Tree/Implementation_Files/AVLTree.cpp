@@ -62,7 +62,7 @@ void AVLTree<T>::insert(TreeNode<T>* cur, T &anItem){
 
     // Returning
     updateHeight(cur, 1);
-    if (violatesAVL(cur)){
+    if (isBalanced(cur)){
         fixAVLTree(cur);
     }
     
@@ -84,13 +84,40 @@ void AVLTree<T>::updateHeight(TreeNode<T>* cur, int amount){
 }
 
 template <class T>
-bool AVLTree<T>::violatesAVL(TreeNode<T>* cur){
+bool AVLTree<T>::isBalanced(TreeNode<T>* cur){
     bool violates = false;
 
     cur->getRightChildPtr()->getHeight() - cur->getLeftChildPtr()->getHeight() >= 2 ||
     cur->getRightChildPtr()->getHeight() - cur->getLeftChildPtr()->getHeight() <= -2 ? violates = true : violates = false;
 
-    return violates;
+    return !violates;
+}
+
+template <class T>
+void AVLTree<T>::fixAVLTree(TreeNode<T>* aNode){
+    // Decide how to fix it
+    if ()
+}
+
+// Rotation functions
+template <class T>
+void AVLTree<T>::rotateR(TreeNode<T>* parent, TreeNode<T>* leftChild){
+
+}
+
+template <class T>
+void AVLTree<T>::rotateL(TreeNode<T>* parent, TreeNode<T>* rightChild){
+
+}
+
+template <class T>
+void AVLTree<T>::rotateRL(TreeNode<T>* parent){
+
+}
+
+template <class T>
+void AVLTree<T>::rotateLR(TreeNode<T>* parent){
+    
 }
 
 int main (){
