@@ -22,6 +22,7 @@ void rotateR(TreeNode<T>* parent, TreeNode<T>* leftChild);
 void rotateL(TreeNode<T>* parent, TreeNode<T>* rightChild);
 void rotateRL(TreeNode<T>* parent);
 void rotateLR(TreeNode<T>* parent);
+void updateHeight(TreeNode<T>* cur, int amount);
 
 public:
 AVLTree();
