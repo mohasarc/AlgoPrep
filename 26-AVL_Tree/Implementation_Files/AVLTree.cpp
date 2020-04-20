@@ -62,7 +62,9 @@ void AVLTree<T>::insert(TreeNode<T>* cur, T &anItem){
 
     // Returning
     updateHeight(cur, 1);
-    // If there is a violation to AVL Rule
+    if (violatesAVL(cur)){
+        fixAVLTree(cur);
+    }
     
 }
 
@@ -79,6 +81,16 @@ bool AVLTree<T>::isEmpty(){
 template <class T>
 void AVLTree<T>::updateHeight(TreeNode<T>* cur, int amount){
     cur->setHeight(cur->getHeight() + amount);
+}
+
+template <class T>
+bool AVLTree<T>::violatesAVL(TreeNode<T>* cur){
+    bool violates = false;
+
+    cur->getRightChildPtr()->getHeight() - cur->getLeftChildPtr()->getHeight() >= 2 ||
+    cur->getRightChildPtr()->getHeight() - cur->getLeftChildPtr()->getHeight() <= -2 ? violates = true : violates = false;
+
+    return violates;
 }
 
 int main (){
