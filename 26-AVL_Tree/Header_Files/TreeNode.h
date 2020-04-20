@@ -27,7 +27,9 @@ void setLeftChildPtr(TreeNode<ItemType>* leftPtr);
 void setRightChildPtr(TreeNode<ItemType>* rightPtr);
 int getHeight() const ;
 void setHeight(const int h);
-}; // end TriNode
+
+}; // end TreeNode
+
 // instantiating needed classes 
 // not to get a linking time error (undefined reference to)
 // read more : https://bytefreaks.net/programming-2/c/c-undefined-reference-to-templated-class-function

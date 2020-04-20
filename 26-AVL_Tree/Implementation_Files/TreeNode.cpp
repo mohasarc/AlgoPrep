@@ -70,7 +70,7 @@ void TreeNode<ItemType>::setHeight(const int h){
     height = h;
 }
 
-int main (){
-    TreeNode<int>* newnd = new TreeNode<int>(4);
-    std::cout << newnd->getItem();
-}
+// int main (){
+//     TreeNode<int>* newnd = new TreeNode<int>(4);
+//     std::cout << newnd->getItem();
+// }
