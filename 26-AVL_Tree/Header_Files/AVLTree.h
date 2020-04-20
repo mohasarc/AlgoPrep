@@ -13,7 +13,7 @@ TreeNode<T>* root;
 // Functions
 void traverse(TreeNode<T>* root);
 bool search(TreeNode<T>* root, T anItem, TreeNode<T>* foundLocation);
-void insert(TreeNode<T>* root, T &anItem, TreeNode<T>* &newPtr);
+void insert(TreeNode<T>* root, T &anItem);
 bool remove(TreeNode<T>* root, T anItem);
 // Make the decidsion on which type of rtation is required
 void fixAVLTree(TreeNode<T>* aNode);
@@ -29,6 +29,7 @@ void traverse();
 bool search(T anItem);
 void insert(T anItem);
 bool remove(T anItem);
+bool isEmpty();
 };
 template class AVLTree<int>;
 #endif

@@ -27,17 +27,23 @@ bool AVLTree<T>::search(TreeNode<T>* root, T anItem, TreeNode<T>* foundLocation)
 
 template <class T>
 void AVLTree<T>::insert(T anItem){
-
+    
 }
 
 template <class T>
-void AVLTree<T>::insert(TreeNode<T>* cur, T &anItem, TreeNode<T>* &newPtr){
-
+void AVLTree<T>::insert(TreeNode<T>* cur, T &anItem){
+    // If empty insert at root
+    if (isEmpty())
 }
 
 template <class T>
 bool AVLTree<T>::remove(T anItem){
     return false;
+}
+
+template <class T>
+bool AVLTree<T>::isEmpty(){
+    return !root;
 }
 
 int main (){
