@@ -19,7 +19,7 @@ int main(){
     //     fHeap.remove();
     // }
 
-    ArrayMaxHeap::sortAsc(arr, 10);
+    ArrayMaxHeap<int>::sortAsc(arr, 10);
     // ArrayMaxHeap::sortDesc(arr, 10);
 
     for (int i = 0; i < 10; i++){

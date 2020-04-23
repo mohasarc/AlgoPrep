@@ -3,9 +3,10 @@
 /**
  * The default constructor
  * */
-ArrayMaxHeap::ArrayMaxHeap(){
+template < class T>
+ArrayMaxHeap<T>::ArrayMaxHeap(){
     itemCount = 0;
-    items = new int[MAX_ITEMS];
+    items = new T[MAX_ITEMS];
 }
 
 /**
@@ -13,9 +14,10 @@ ArrayMaxHeap::ArrayMaxHeap(){
  * @param inItems the array of items to be added to heap
  * @param size the size of the array
  * */
-ArrayMaxHeap::ArrayMaxHeap(int *inItems, int size) {
+template < class T>
+ArrayMaxHeap<T>::ArrayMaxHeap(T *inItems, int size) {
     itemCount = size;
-    items = new int[MAX_ITEMS];
+    items = new T[MAX_ITEMS];
 
     // Populate the heap with items from the array
     for (int i = 0; i < size; i++)
@@ -25,7 +27,8 @@ ArrayMaxHeap::ArrayMaxHeap(int *inItems, int size) {
     createHeap();
 }
 
-ArrayMaxHeap::~ArrayMaxHeap(){
+template < class T>
+ArrayMaxHeap<T>::~ArrayMaxHeap(){
     delete [] items;
     itemCount = 0;
 }
@@ -34,28 +37,32 @@ ArrayMaxHeap::~ArrayMaxHeap(){
 /**
  * @return boolean whether the heap is empty
  * */
-bool ArrayMaxHeap::isEmpty(){
+template < class T>
+bool ArrayMaxHeap<T>::isEmpty(){
     return !itemCount;
 }
 
 /**
  * 
  * */
-int ArrayMaxHeap::getNumberOfNodes(){
-
+template < class T>
+int ArrayMaxHeap<T>::getNumberOfNodes(){
+    
 }
 
 /**
  * 
  * */
-int ArrayMaxHeap::getHeight(){
+template < class T>
+int ArrayMaxHeap<T>::getHeight(){
 
 }
 
 /**
  * retrieves the top item of the heap
  * */
-int ArrayMaxHeap::peekTop(){
+template < class T>
+T ArrayMaxHeap<T>::peekTop(){
     // retrieving the root item
     return items[rootIndex];
 }
@@ -64,13 +71,14 @@ int ArrayMaxHeap::peekTop(){
  * To add a new item to the heap
  * @param newData The item to be added
  * */
-bool ArrayMaxHeap::add(int newData){
+template < class T>
+bool ArrayMaxHeap<T>::add(T newData){
     // If heap is already full
     if (itemCount >= MAX_ITEMS)
         return false;
 
     // Add the item to the bottom of the heap tree
-    items[rootIndex + itemCount++];
+    items[rootIndex + itemCount++] = newData;
     // Fit the newly added item in its position
     fitNewItem(rootIndex + itemCount - 1);
 
@@ -80,7 +88,8 @@ bool ArrayMaxHeap::add(int newData){
 /**
  * 
  * */
-bool ArrayMaxHeap::remove(){
+template < class T>
+bool ArrayMaxHeap<T>::remove(){
     if (isEmpty())
         return false;
 
@@ -94,8 +103,9 @@ bool ArrayMaxHeap::remove(){
 /**
  * 
  * */
-void ArrayMaxHeap::clear(){
-
+template < class T>
+void ArrayMaxHeap<T>::clear(){
+    
 }
 
 /**
@@ -103,7 +113,8 @@ void ArrayMaxHeap::clear(){
  * value down the tree
  * @param root the index in which is the item that is out of place
  * */
-void ArrayMaxHeap::heapRebuild(int root){
+template < class T>
+void ArrayMaxHeap<T>::heapRebuild(int root){
 
     // Local variables
     int leftChild = getLeftChileIndex(root);
@@ -137,8 +148,9 @@ void ArrayMaxHeap::heapRebuild(int root){
  * @param a the first item to be swapped
  * @param b the second item to be swapped 
  * */
-void ArrayMaxHeap::swap(int &a, int &b){
-    int temp = a;
+template < class T>
+void ArrayMaxHeap<T>::swap(T &a, T &b){
+    T temp = a;
     a = b;
     b = temp;
 }
@@ -147,7 +159,8 @@ void ArrayMaxHeap::swap(int &a, int &b){
  * @param parentI the index of the parent
  * @return the index of its right child
  * */
-int ArrayMaxHeap::getRightChildIndex(int parentI){
+template < class T>
+int ArrayMaxHeap<T>::getRightChildIndex(int parentI){
     return parentI * 2 + 2;
 }
 
@@ -155,7 +168,8 @@ int ArrayMaxHeap::getRightChildIndex(int parentI){
  * @param parentI the inde of the parent
  * @return the index of its left child
  * */
-int ArrayMaxHeap::getLeftChileIndex(int parentI){
+template < class T>
+int ArrayMaxHeap<T>::getLeftChileIndex(int parentI){
     return parentI * 2 + 1;
 }
 
@@ -163,14 +177,16 @@ int ArrayMaxHeap::getLeftChileIndex(int parentI){
  * @param childI The index of the child
  * @return the index of its parent
  * */
-int ArrayMaxHeap::getParentIndex(int childI){
+template < class T>
+int ArrayMaxHeap<T>::getParentIndex(int childI){
     return (childI - 1) / 2;
 }
 
 /**
  * Creates the heap
  * */
-void ArrayMaxHeap::createHeap(){
+template < class T>
+void ArrayMaxHeap<T>::createHeap(){
     for (int i = (rootIndex + itemCount)/2; i >= 0; i--)
         heapRebuild(i);
 }
@@ -178,7 +194,8 @@ void ArrayMaxHeap::createHeap(){
 /**
  * 
  * */
-void ArrayMaxHeap::fitNewItem(int itemIndex){
+template < class T>
+void ArrayMaxHeap<T>::fitNewItem(int itemIndex){
     int parentIndex = getParentIndex(itemIndex);
 
     // Base case
@@ -197,7 +214,8 @@ void ArrayMaxHeap::fitNewItem(int itemIndex){
 /**
  * 
  * */
-bool ArrayMaxHeap::isLeaf(int index){
+template < class T>
+bool ArrayMaxHeap<T>::isLeaf(int index){
     int lastParent = getParentIndex(rootIndex + itemCount - 1);
     bool leaf;
 
@@ -209,14 +227,16 @@ bool ArrayMaxHeap::isLeaf(int index){
 /**
  * 
  * */
-void ArrayMaxHeap::print(){
+template < class T>
+void ArrayMaxHeap<T>::print(){
     print(0, 0);
 }
 
 /**
  * 
  * */
-void ArrayMaxHeap::print(int root, int level){
+template < class T>
+void ArrayMaxHeap<T>::print(int root, int level){
     // if doesn't exist stop
     if (root >= rootIndex + itemCount)
         return;
@@ -232,7 +252,8 @@ void ArrayMaxHeap::print(int root, int level){
     print(getRightChildIndex(root), level + 1);
 }
 
-void ArrayMaxHeap::sortAsc(int *arr, int size){
+template < class T>
+void ArrayMaxHeap<T>::sortAsc(T *arr, int size){
     ArrayMaxHeap heap;
     heap.items = arr;
     heap.itemCount = size;
@@ -249,14 +270,17 @@ void ArrayMaxHeap::sortAsc(int *arr, int size){
     heap.items = NULL;
 }
 
-void ArrayMaxHeap::sortDesc(int *arr, int size){
+template < class T>
+void ArrayMaxHeap<T>::sortDesc(T *arr, int size){
     // to be implemented with minHeap
 }
 
-void ArrayMaxHeap::sortAsc(ArrayMaxHeap &heap){
+template < class T>
+void ArrayMaxHeap<T>::sortAsc(ArrayMaxHeap &heap){
 
 }
 
-void ArrayMaxHeap::sortDesc(ArrayMaxHeap &heap){
+template < class T>
+void ArrayMaxHeap<T>::sortDesc(ArrayMaxHeap &heap){
 
 }
