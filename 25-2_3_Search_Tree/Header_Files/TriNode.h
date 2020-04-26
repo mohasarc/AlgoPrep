@@ -7,6 +7,8 @@
 #ifndef _TRI_NODE
 #define _TRI_NODE
 #include <iostream>
+#include <string>
+using namespace std;
 
 template < class ItemType>
 class TriNode
@@ -37,9 +39,4 @@ void setLeftChildPtr(TriNode<ItemType>* leftPtr);
 void setMidChildPtr(TriNode<ItemType>* midPtr);
 void setRightChildPtr(TriNode<ItemType>* rightPtr);
 }; // end TriNode
-// instantiating needed classes 
-// not to get a linking time error (undefined reference to)
-// read more : https://bytefreaks.net/programming-2/c/c-undefined-reference-to-templated-class-function
-template class TriNode<int>;
-// #include "TriNode"
 #endif

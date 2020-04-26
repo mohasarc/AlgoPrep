@@ -248,14 +248,17 @@ bool Tree23<T>::remove(T anItem){
     return false;
 }
 
-int main (){
-    Tree23<int>* node = new Tree23<int>();
-    node->insert(10);
-    node->insert(5);
-    node->insert(2);
-    node->insert(3);
-    node->insert(7);
-    node->insert(1);
-    node->traverse();
-    return 0;
-}
+// int main (){
+//     Tree23<int>* node = new Tree23<int>();
+//     node->insert(10);
+//     node->insert(5);
+//     node->insert(2);
+//     node->insert(3);
+//     node->insert(7);
+//     node->insert(1);
+//     node->traverse();
+//     return 0;
+// }
+
+template class Tree23<int>;
+template class Tree23<string>;

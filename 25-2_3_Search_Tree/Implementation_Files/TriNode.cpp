@@ -102,7 +102,8 @@ void TriNode<ItemType>::setRightChildPtr(TriNode<ItemType>* rightPtr){
     rightChildPtr = rightPtr;
 }
 
-// int main (){
-//     TriNode<int>* newnd = new TriNode<int>(4);
-//     std::cout << newnd->getSmallItem();
-// }
+// instantiating needed classes 
+// not to get a linking time error (undefined reference to)
+// read more : https://bytefreaks.net/programming-2/c/c-undefined-reference-to-templated-class-function
+template class TriNode<int>;
+template class TriNode<string>;

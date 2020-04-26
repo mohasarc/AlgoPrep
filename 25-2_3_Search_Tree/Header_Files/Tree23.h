@@ -10,20 +10,79 @@ private:
 // Properties
 TriNode<T>* root;
 
-// Functions
+// Methods
 void traverse(TriNode<T>* root);
 bool search(TriNode<T>* root, T anItem, TriNode<T>* foundLocation);
 void insert(TriNode<T>* root, T &anItem, TriNode<T>* &newPtr);
 bool remove(TriNode<T>* root, T anItem);
 void swapWithChild(TriNode<T>* root, T &anItem, char which);
 void splitNode(TriNode<T>* origNode, TriNode<T>* &separatedNode, TriNode<T>* newNode);
+// This method has to be implemented in the header file
+// not to get a linkage error
+/**
+ * This function takes a function and its arguments to update all
+ * entries using the given function
+ * @param cur The index of the current entry (used for the recursive call)
+ * @param fcn The function that will be used to update all entries
+ * @param args The parameters that the fcn function take (parameter packs)
+ * */
+template <typename Function, typename... Args>
+void updateEntries(TriNode<T>* curNode,Function fcn, Args... args){
+    // Base Case
+    if (curNode->isLeaf()){
+        // Apply the function
+        curNode->setSmallItem(
+            fcn(curNode->getSmallItem(), args...)
+        );
 
+        if (curNode->isThreeNode()){
+            curNode->setLargeItem(
+                fcn(curNode->getLargeItem(), args...)
+            );
+        }
+        return;
+    }
+
+    // Not a leaf
+    // Go Left
+    updateEntries(curNode->getLeftChildPtr(), fcn, args...);
+
+    // Apply function to smaller Item
+    curNode->setSmallItem(
+        fcn(curNode->getSmallItem(), args...)
+    );
+
+    // Go middle
+    updateEntries(curNode->getMidChildPtr(), fcn, args...);
+
+    if (curNode->isThreeNode()) {
+        // Apply function on large item
+        curNode->setLargeItem(
+            fcn(curNode->getLargeItem(), args...)
+        );
+
+        // Go right
+        updateEntries(curNode->getRightChildPtr(), fcn, args...);
+    }
+}
 public:
 Tree23();
 void traverse();
 bool search(T anItem);
 void insert(T anItem);
 bool remove(T anItem);
+// This method has to be implemented in the header file
+// not to get a linkage error
+/**
+ * This function takes a function and its arguments to update all
+ * entries using the given function
+ * @param fcn The function that will be used to update all entries 
+ *            (First argument should always be of the type of the entries)
+ * @param args The parameters that the fcn function take (parameter packs)
+ * */
+template<typename Function, typename... Args>
+void updateEntries(Function fcn, Args... args){
+    updateEntries(root, fcn, args...);
+}
 };
-template class Tree23<int>;
 #endif
