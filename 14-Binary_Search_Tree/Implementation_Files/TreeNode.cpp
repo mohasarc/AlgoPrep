@@ -61,12 +61,43 @@ void TreeNode<T>::setRightChildPtr(TreeNode<T>* rightPtr){
 // int getHeight() const ;
 template <class T>// void setHeight(const int h);
 void TreeNode<T>::NodeStringParser(string nodeString, T* Values, int &numValues){
+    bool nodeFilled = false;
+    string aVal = "";
+    char aChar;
+    numValues = 0;
 
+    for (int i = 0; i < nodeString.length() && !nodeFilled; i++){
+        aChar = nodeString.at(i);
+        if ((aChar == ',' || aChar == '}') && aVal != ""){
+            Values[numValues] = stoi(aVal);
+            aVal = "";
+            numValues ++;
+        } else {
+            if (aChar != '{' && aChar != '}'){
+                aVal += aChar;
+            }
+        }
+
+        if (aChar == '}'){
+            nodeFilled = true;
+        }
+    }
 }
 
 template <class T>
-void TreeNode<T>::construct(const string& nodeString ){
-
+bool TreeNode<T>::construct(const string& nodeString ){
+    T values[1];
+    int numValues;
+    
+    NodeStringParser(nodeString, values, numValues);
+    if (numValues > 0){
+        this->item = values[0];
+        return true;
+    } else 
+        return false;
+        
+    this->leftChildPtr = NULL;
+    this->rightChildPtr = NULL;
 }
 
 template <class T>
