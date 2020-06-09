@@ -69,6 +69,14 @@ void BNode<Type>::addKey(Type key, int index){
 }
 
 /**
+ * @param index The index of the key to be deleted
+ * */
+template <class Type>
+void BNode<Type>::removeKey(int index){
+    this->keys.erase(this->keys.begin() + index);
+}
+
+/**
  * To get the value of key at a specific index
  * @param index The index to get its key
  * @return Type the key
