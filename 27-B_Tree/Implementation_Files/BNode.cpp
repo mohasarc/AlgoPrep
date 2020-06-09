@@ -1,3 +1,8 @@
+/**
+ * @author Mohammed S. Yaseen
+ * @date 7/6/2020
+ * */
+
 #include "../Header_Files/BNode.h"
 
 /**

@@ -1,3 +1,8 @@
+/**
+ * @author Mohammed S. Yaseen
+ * @date 7/6/2020
+ * */
+
 #ifndef BNODE_H
 #define BNODE_H
 #include <vector>

@@ -1,3 +1,8 @@
+/**
+ * @author Mohammed S. Yaseen
+ * @date 7/6/2020
+ * */
+
 #ifndef BTREE_H
 #define BTREE_H
 #include "./BNode.h"
